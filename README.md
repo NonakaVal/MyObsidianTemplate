@@ -47,7 +47,7 @@ actions:
 
 - `Ctrl + N` para criar uma nova nota – plugin [QuickAdd](https://github.com/chhoumann/quickadd)
 
-![](https://imgur.com/f6ezubJ.png)
+![](https://imgur.com/JfpCUix.png)
 
 
 #### 💭 Daily Captures
@@ -78,23 +78,27 @@ actions:
 <br>
 
 # 🔌 Lista de Plugins da Comunidade
+- **[Auto Link Title](https://obsidian.md/plugins?id=obsidian-auto-link-title)** – Busca automaticamente o título de links da web
 - **[Calendar](https://obsidian.md/plugins?id=calendar)** – Visualização em calendário integrada às notas diárias 
 - **[Callout Manager](https://obsidian.md/plugins?id=callout-manager)** – Crie e gerencie callouts sem escrever CSS
 - **[Dataview](https://obsidian.md/plugins?id=dataview)** – Consulte e organize notas como um banco de dados
-- **[Force note view mode](https://obsidian.md/plugins?id=obsidian-view-mode-by-frontmatter)** – Força um modos de visualização
+- **[Force note view mode](https://obsidian.md/plugins?id=obsidian-view-mode-by-frontmatter)** – Define o modo de visualização e edição das notas pelo frontmatter
 - **[Hotkeys for specific files](https://obsidian.md/plugins?id=obsidian-hotkeys-for-specific-files)** – Atalhos personalizados para abrir arquivos específicos 
 - **[Iconize](https://obsidian.md/plugins?id=obsidian-icon-folder)** – Adicione ícones personalizados a arquivos, pastas e links
 - **[Meta Bind](https://obsidian.md/plugins?id=obsidian-meta-bind-plugin)** – Campos interativos ligados diretamente ao frontmatter
+- **[Markdown Tabs](https://obsidian.md/plugins?id=tabs)** – Organize conteúdo em abas dentro das notas
+- **[Novel word count](https://obsidian.md/plugins?id=novel-word-count)** – Exiba a contagem de palavras de arquivos, pastas e do vault
 - **[Outliner](https://obsidian.md/plugins?id=obsidian-outliner)** – Edição em estilo de lista com atalhos aprimorados
 - **[Paste URL into selection](https://obsidian.md/plugins?id=url-into-selection)** – Converte automaticamente o texto selecionado em link
+- **[Paste image rename](https://obsidian.md/plugins?id=obsidian-paste-image-rename)** – Renomeia imagens e outros anexos ao adicioná-los ao vault
 - **[Periodic Notes](https://obsidian.md/plugins?id=periodic-notes)** – Crie e gerencie notas semanais, mensais e anuais
 - **[QuickAdd](https://obsidian.md/plugins?id=quickadd)** – Captura rápida de conteúdo usando comandos, templates e automações
 - **[Recent Files](https://obsidian.md/plugins?id=recent-files-obsidian)** – Acesso rápido a notas abertas recentemente
-- **[Tabs](https://obsidian.md/plugins?id=tabs)** – Navegação por abas dentro do Obsidian
+- **[Remember cursor position](https://obsidian.md/plugins?id=remember-cursor-position)** – Lembra a posição do cursor e da rolagem em cada nota
 - **[Simple Banner](https://obsidian.md/plugins?id=simple-banner)** – Adicione banners visuais às notas
+- **[Style Settings](https://obsidian.md/plugins?id=obsidian-style-settings)** – Ajuste opções de temas, plugins e snippets
 - **[Tag Wrangler](https://obsidian.md/plugins?id=tag-wrangler)** – Renomeie, una e gerencie tags em todo o vault
-- **[Paste Image Rename](https://obsidian.md/plugins?id=obsidian-paste-image-rename)** – Renomeia automaticamente imagens coladas
-- **[Settings Search](https://obsidian.md/plugins?id=settings-search)** – Busca e navegação rápidas nas configurações do Obsidian
+- **[Templater](https://obsidian.md/plugins?id=templater-obsidian)** – Crie templates avançados e automatize a criação de notas
 
 
 

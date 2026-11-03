@@ -1,7 +1,15 @@
 ---
 collection: "[[+ Gestão de Conhecimento]]"
 ---
+
+
 O **framework ACE** (Atlas, Calendar, Efforts) é um sistema universal para organizar conhecimento, tempo e ação — foi criada por [Nick Milo](https://forum.obsidian.md/t/the-ultimate-folder-system-a-quixotic-journey-to-ace/63483) e se organiza em três áreas principais:
+
+> [!Video]- Framework ACE
+> - Apresente Atlas, Calendar e Efforts e o propósito de cada área.
+> - Explique o que guardar em cada uma usando exemplos simples.
+> - Mostre como conhecimento, tempo e ação se complementam.
+
 
 - **A – Atlas** → Guarda referências e conhecimento geral. É o “mapa” das suas ideias, conceitos e temas.
 - **C – Calendário** → Armazena tudo que está ligado a datas: eventos, prazos, registros cronológicos.

@@ -3,8 +3,12 @@ collection:
   - "[[+ Gestão de Conhecimento]]"
 ---
 
-
 ARC define o fluxo das suas ideias pelo tempo e espaço, muito além disso. esse é um framework que amplia seu processo criativo
+
+> [!Video]- ARC Method
+> - Explique o ciclo ARC: Adicionar, Relacionar e Comunicar.
+> - Mostre como ideias novas entram na pasta `+` e amadurecem.
+> - Demonstre como conectar ideias, aplicá-las e compartilhar o conhecimento.
 
 **Ciclo**: Novas ideias → Organização natural → Aplicação concreta = Sistema autossustentável de aprendizado.
 

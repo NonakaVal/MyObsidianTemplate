@@ -6,5 +6,6 @@
   "modular-css-layout-wv@@wide-dataview-global": false,
   "modular-css-layout-wv@@wide-table-global": false,
   "shiba-theme-settings@@shiba-colors-theme-dark": "warm-dark",
-  "shiba-theme-settings@@shiba-accent-colors": "accent-turquoise"
+  "shiba-theme-settings@@shiba-accent-colors": "accent-turquoise",
+  "Editor@@inline-title-divider-remove": false
 }

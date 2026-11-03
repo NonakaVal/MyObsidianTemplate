@@ -2,7 +2,9 @@
   "callouts": {
     "custom": [
       "testcallout",
-      "connect"
+      "connect",
+      "target",
+      "youtube"
     ],
     "settings": {
       "testcallout": [

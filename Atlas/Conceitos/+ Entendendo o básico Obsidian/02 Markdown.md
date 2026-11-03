@@ -2,9 +2,17 @@
 collection:
   - "[[+ Gestão de Conhecimento]]"
 ---
+
 Markdown é formatação usada pelo obsidian, e obedece as seguintes regras abaixo, entretanto você também pode formatar usando a barra de opções superior no modo edição, caso esteja no modo leitura basta usar o atalho `Ctrl + E` para alternar entre os modos.
 
+> [!Video]- Entendendo Markdown
+> - Apresente a sintaxe básica: títulos, estilos e listas.
+> - Demonstre links, imagens, citações e quebras de linha.
+> - Mostre blocos de código, notas de rodapé e caracteres escapados.
+
 [Documentação de ajuda oficial](https://help.obsidian.md/syntax")
+
+
 
 ### Cabeçalhos
 
