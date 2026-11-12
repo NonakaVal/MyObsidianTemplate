@@ -9,9 +9,7 @@ cssclasses:
 
 
 > [!Video]+ Boas Vindas ao meu Template
-> - Apresente o objetivo do template e para quem ele serve.
-> - Mostre como navegar pelos workspaces e seguir a ordem sugerida.
-> - Explique onde começar e como encontrar os recursos principais.
+> <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://drive.google.com/file/d/1NArf7VSbTF80EJZIIWV9PZjaLM5cYy2e/preview" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
 
 
  `BUTTON[readme]`   :LiOption:    

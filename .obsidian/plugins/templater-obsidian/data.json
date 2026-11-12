@@ -11,7 +11,7 @@
   "folder_templates": [
     {
       "folder": "+",
-      "template": "X/Templates/Format/A-new-note.md"
+      "template": "X/Templates/Format/T-new-note-collection.md"
     },
     {
       "folder": "Calendar & Review/Daily Notes",

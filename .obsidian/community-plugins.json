@@ -23,6 +23,7 @@
   "calendar",
   "periodic-notes",
   "templater-obsidian",
-  "simple-banner",
-  "remember-cursor-position"
+  "remember-cursor-position",
+  "banners-reloaded",
+  "obsidian-auto-link-title"
 ]

@@ -1,8 +1,6 @@
 ---
-collection: "[[+ Gestão de Conhecimento]]"
+collection: "[[Gestão de Conhecimento]]"
 ---
-# Padrões e Boas Práticas para Gestão de Conhecimento Pessoal
-
 ## Introdução
 
 Com o surgimento das **[[03 Propriedades|Propriedades]]** — uma forma adequada de gerenciar metadados — tornou-se essencial estabelecer padrões e boas práticas para diferentes tipos de notas. Embora alguns possam chamar isso de "ontologias", utilizaremos o termo **"padrões"** para manter a simplicidade.

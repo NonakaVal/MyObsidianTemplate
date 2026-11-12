@@ -1,6 +1,6 @@
 ---
 collection:
-  - "[[+ Gestão de Conhecimento]]"
+  - "[[Gestão de Conhecimento]]"
 ---
 
 Markdown é formatação usada pelo obsidian, e obedece as seguintes regras abaixo, entretanto você também pode formatar usando a barra de opções superior no modo edição, caso esteja no modo leitura basta usar o atalho `Ctrl + E` para alternar entre os modos.
@@ -11,9 +11,9 @@ Markdown é formatação usada pelo obsidian, e obedece as seguintes regras abai
 > - Mostre blocos de código, notas de rodapé e caracteres escapados.
 
 [Documentação de ajuda oficial](https://help.obsidian.md/syntax")
+[Obsidian for Beginners: 6 Keys to Markdown](https://www.youtube.com/watch?v=bBk2kg8Gm_U)  - Vídeo NIckMilo
 
-
-
+# Markdown
 ### Cabeçalhos
 
 Use `#` no início da linha. O número de `#` define o nível (1 a 6).
@@ -155,6 +155,6 @@ Use `\` antes de um caractere especial para exibi-lo literalmente.
 
 ---
 
- Seguir para ➡️  [[04 Entendendo Coleções]]
+ Seguir para ➡️  [[03 Propriedades]]
 
 <br>

@@ -1,6 +1,6 @@
 ---
 collection:
-  - "[[+ Gestão de Conhecimento]]"
+  - "[[Gestão de Conhecimento]]"
 ---
 
 ARC define o fluxo das suas ideias pelo tempo e espaço, muito além disso. esse é um framework que amplia seu processo criativo

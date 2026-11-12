@@ -11,7 +11,7 @@
           "name": "📝 new note",
           "type": "Template",
           "command": true,
-          "templatePath": "X/Templates/Format/T-new-note-base.md",
+          "templatePath": "X/Templates/Format/T-new-note-collection.md",
           "fileNameFormat": {
             "enabled": false,
             "format": ""
@@ -99,6 +99,61 @@
               },
               "activeFileWritePosition": "cursor",
               "captureToCanvasNodeId": ""
+            },
+            {
+              "id": "9779b82a-aa11-4b82-b26f-b60e3279c2cf",
+              "name": "🧭 Intenção (copy)",
+              "type": "Capture",
+              "command": true,
+              "appendLink": false,
+              "copyLinkToClipboard": false,
+              "captureTo": "Calendar & Review/Daily Notes/{{date}}",
+              "captureToActiveFile": false,
+              "captureToCanvasNodeId": "",
+              "activeFileWritePosition": "cursor",
+              "createFileIfItDoesntExist": {
+                "enabled": true,
+                "createWithTemplate": true,
+                "template": "X/Templates/Format/A-Daily Note Template.md"
+              },
+              "format": {
+                "enabled": true,
+                "format": "🧭 {{value}} - {{time}} \\ [[{{date}}]]"
+              },
+              "insertAfter": {
+                "enabled": true,
+                "after": "# Capture",
+                "insertAtEnd": true,
+                "considerSubsections": false,
+                "createIfNotFound": true,
+                "createIfNotFoundLocation": "bottom",
+                "inline": false,
+                "replaceExisting": false,
+                "promptHeading": false,
+                "blankLineAfterMatchMode": "auto"
+              },
+              "insertBefore": {
+                "enabled": false,
+                "before": "",
+                "createIfNotFound": false,
+                "createIfNotFoundLocation": "top"
+              },
+              "newLineCapture": {
+                "enabled": false,
+                "direction": "below"
+              },
+              "prepend": false,
+              "task": true,
+              "openFile": false,
+              "fileOpening": {
+                "location": "tab",
+                "direction": "vertical",
+                "mode": "default",
+                "focus": true
+              },
+              "templater": {
+                "afterCapture": "none"
+              }
             },
             {
               "id": "5a23f7f7-a1cb-4a40-a68f-0c0df837dbe6",
@@ -425,7 +480,7 @@
               }
             }
           ],
-          "collapsed": false
+          "collapsed": true
         },
         {
           "id": "c54062a3-b494-4078-b684-81443fc9880d",
@@ -457,6 +512,39 @@
           "fileExistsBehavior": {
             "kind": "prompt"
           }
+        },
+        {
+          "id": "865c6740-e809-4abe-b929-d8956a16fd1a",
+          "name": "📁 Nova Coleção",
+          "type": "Template",
+          "command": true,
+          "templatePath": "X/Templates/Format/_collection.md",
+          "fileNameFormat": {
+            "enabled": false,
+            "format": ""
+          },
+          "folder": {
+            "enabled": true,
+            "folders": [
+              "X/Collections"
+            ],
+            "chooseWhenCreatingNote": false,
+            "createInSameFolderAsActiveFile": false,
+            "chooseFromSubfolders": false
+          },
+          "appendLink": false,
+          "openFile": false,
+          "fileOpening": {
+            "location": "tab",
+            "direction": "vertical",
+            "mode": "default",
+            "focus": true
+          },
+          "fileExistsBehavior": {
+            "kind": "prompt"
+          },
+          "discoverExistingNotesBeforeCreate": false,
+          "copyLinkToClipboard": false
         },
         {
           "id": "56f7b2bb-3b01-40a6-9a31-83719f02ff75",

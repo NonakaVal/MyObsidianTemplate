@@ -1,3 +1,7 @@
+---
+collection:
+  - "[[Gestão de Conhecimento]]"
+---
 
 # Créditos e Atribuições
 
@@ -14,6 +18,8 @@ Abaixo estão listadas as principais fontes que serviram de inspiração, refer�
 - [ACE para Organização, Pacote de Conhecimento (v1.0)](https://www.linkingyourthinking.com/) — Nic Milo & LYT. Referência para organização e estruturação de conhecimento.
 - [The Ultimate Folder System: A Quixotic Journey to ACE](https://forum.obsidian.md/t/the-ultimate-folder-system-a-quixotic-journey-to-ace/63483) — Discussão sobre o desenvolvimento do sistema ACE.
 - [Linking Your Thinking Resources](https://forum.obsidian.md/t/linking-your-thinking-resources/6177) — Coleção de recursos e materiais da comunidade LYT.
+- [Obsidian-Zettelkasten Starter-Kit - Knowledge management - Obsidian Forum](https://forum.obsidian.md/t/obsidian-zettelkasten-starter-kit/51090)
+- [12 Principles for using Zettelkasten - Knowledge management - Obsidian Forum](https://forum.obsidian.md/t/12-principles-for-using-zettelkasten/51679)
 
 ### Dashboards e Interfaces
 

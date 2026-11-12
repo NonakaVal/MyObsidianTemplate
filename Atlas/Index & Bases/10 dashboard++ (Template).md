@@ -1,7 +1,12 @@
 ---
 cssclasses:
   - dashboard
+  - hide-properties_reading
+  - hide-properties_editing
 banner: https://w.wallhaven.cc/full/d8/wallhaven-d83g9m.jpg
+collection:
+  - "[[Gestão de Conhecimento]]"
+banner_y: 50.5%
 ---
 
 

@@ -1,5 +1,5 @@
 ---
-collection: "[[+ Gestão de Conhecimento]]"
+collection: "[[Gestão de Conhecimento]]"
 ---
 As **coleções** são um sistema de **agrupamento temático** que funciona através de **referências bidirecionais** no Obsidian. Uma coleção é uma **nota central no sistema**, vazia **ou** não, que automaticamente exibe todas as notas que fazem referência a ela através da propriedade `collection:`.
 
@@ -13,7 +13,7 @@ Ficam em `X/Coleções/` e servem como "etiquetas inteligentes".
 
 
 ```meta-bind-button
-label: Seguir para 02 Introdução ao ACE
+label: Seguir para 04 Boas práticas Classificação
 hidden: false
 icon: space
 class: ""

@@ -1,3 +1,10 @@
+---
+collection:
+  - "[[Gestão de Conhecimento]]"
+cssclasses:
+  - hide-properties_reading
+  - hide-properties_editing
+---
 <br><br>
 
 
