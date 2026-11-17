@@ -855,7 +855,7 @@
                   "type": "markdown",
                   "state": {
                     "file": "Atlas/Conceitos/+ Entendendo o básico Obsidian/03 Propriedades.md",
-                    "mode": "source",
+                    "mode": "preview",
                     "source": false,
                     "backlinks": false
                   },
@@ -943,7 +943,7 @@
                 "state": {
                   "type": "search",
                   "state": {
-                    "query": "[\"TQ_short_mode\"]",
+                    "query": "",
                     "matchingCase": false,
                     "explainSearch": false,
                     "collapseAll": false,
@@ -979,7 +979,8 @@
           }
         ],
         "direction": "horizontal",
-        "width": 344.5
+        "width": 344.5,
+        "collapsed": true
       },
       "right": {
         "id": "3703f7d8eaeb01fd",
@@ -1123,12 +1124,11 @@
           "workspaces:Gerenciar leiautes da área de trabalho": false,
           "bases:Criar nova base": false,
           "callout-manager:Insert Callout": false,
-          "templater-obsidian:Templater": false,
-          "periodic-notes:Open today": false
+          "templater-obsidian:Templater": false
         }
       },
-      "active": "2fa9b662bcaa7740",
-      "mtime": "2026-11-12T15:31:50-03:00"
+      "active": "2f4da4148c8faf6f",
+      "mtime": "2026-11-12T17:53:17-03:00"
     },
     "03 - Coleções": {
       "main": {

@@ -12,11 +12,8 @@ cssclasses:
 Toda nota é criada inicialmente da pasta `+`.   
 
 <br><br>
-
-> [!Video]- Primeira Nota
-> - Crie uma nota com `Ctrl + N` e explique a pasta `+`.
-> - Demonstre como escrever uma ideia e criar um link interno.
-> - Mostre como alternar entre leitura e edição e onde continuar.
+> [!Video]+ Primeira Nota
+> <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://drive.google.com/file/d/1qW5Q3HoMAqRg7vyPtOfspMw75L75YSQF/preview" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
 
 <br>
 

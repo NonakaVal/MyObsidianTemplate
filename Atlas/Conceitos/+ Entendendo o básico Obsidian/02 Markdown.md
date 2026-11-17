@@ -4,11 +4,10 @@ collection:
 ---
 
 Markdown é formatação usada pelo obsidian, e obedece as seguintes regras abaixo, entretanto você também pode formatar usando a barra de opções superior no modo edição, caso esteja no modo leitura basta usar o atalho `Ctrl + E` para alternar entre os modos.
+> [!Video]+ Entendendo Markdown
+> <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://drive.google.com/file/d/1GBL-NHs2eBvcb6dp570YTWYPMgN1RCc5/preview" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
 
-> [!Video]- Entendendo Markdown
-> - Apresente a sintaxe básica: títulos, estilos e listas.
-> - Demonstre links, imagens, citações e quebras de linha.
-> - Mostre blocos de código, notas de rodapé e caracteres escapados.
+
 
 [Documentação de ajuda oficial](https://help.obsidian.md/syntax")
 [Obsidian for Beginners: 6 Keys to Markdown](https://www.youtube.com/watch?v=bBk2kg8Gm_U)  - Vídeo NIckMilo

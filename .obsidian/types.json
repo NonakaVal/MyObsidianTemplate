@@ -6,6 +6,7 @@
     "created": "date",
     "area": "multitext",
     "datetime": "datetime",
-    "collection": "multitext"
+    "collection": "multitext",
+    "tipos": "checkbox"
   }
 }

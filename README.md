@@ -4,6 +4,13 @@
 
 ---
 
+> [!Video]- Caso se perca, sobre Os Workspaces
+> <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://drive.google.com/file/d/16LoXfq4ySZmYJ8K9RIUcp6sT7Z1b_lnH/preview" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
+
+> [!Video]- Sobre a Vault e dicas de Personalização
+> <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://drive.google.com/file/d/1hHHp22cD4Rh8TneKHf4K1-C2dGpD8MiI/preview" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
+
+
 >[!SUMMARY]- Conteúdos
 >- [[README#Primeiros Passos |Primeiros Passos ]]
 >- [[README#Funcionalidades|Funcionalidades]]

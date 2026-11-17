@@ -5,30 +5,6 @@
       "path": "Boas Vindas.md"
     },
     {
-      "basename": "Considere apoiar o projeto 💛",
-      "path": "Considere apoiar o projeto 💛.md"
-    },
-    {
-      "basename": "Como baixar e instalar Copilot",
-      "path": "+/Como baixar e instalar Copilot.md"
-    },
-    {
-      "basename": "Obsidian Base",
-      "path": "+/Obsidian Base.base"
-    },
-    {
-      "basename": "@-templates",
-      "path": "X/Assets/Dataview/@-templates.md"
-    },
-    {
-      "basename": "+ Gestão de Conhecimento",
-      "path": "Atlas/Index & Bases/+ Gestão de Conhecimento.md"
-    },
-    {
-      "basename": "09 ARC Framework",
-      "path": "Atlas/Conceitos/+ Entendendo o básico Obsidian/09 ARC Framework.md"
-    },
-    {
       "basename": "08 ACE Pack",
       "path": "Atlas/Conceitos/+ Entendendo o básico Obsidian/08 ACE Pack.md"
     },
@@ -45,20 +21,64 @@
       "path": "Atlas/Conceitos/+ Entendendo o básico Obsidian/03 Propriedades.md"
     },
     {
-      "basename": "01 Primeira Nota",
-      "path": "Atlas/Conceitos/+ Entendendo o básico Obsidian/01 Primeira Nota.md"
-    },
-    {
       "basename": "02 Markdown",
       "path": "Atlas/Conceitos/+ Entendendo o básico Obsidian/02 Markdown.md"
     },
     {
-      "basename": "As 3 Areas ACE",
-      "path": "+/As 3 Areas ACE.md"
+      "basename": "01 Primeira Nota",
+      "path": "Atlas/Conceitos/+ Entendendo o básico Obsidian/01 Primeira Nota.md"
+    },
+    {
+      "basename": "README",
+      "path": "README.md"
+    },
+    {
+      "basename": "🏠",
+      "path": "🏠.md"
+    },
+    {
+      "basename": "Créditos-Atribuições",
+      "path": "Créditos-Atribuições.md"
+    },
+    {
+      "basename": "+ Gestão de Conhecimento",
+      "path": "Atlas/Index & Bases/+ Gestão de Conhecimento.md"
+    },
+    {
+      "basename": "nova nota",
+      "path": "+/nova nota.md"
+    },
+    {
+      "basename": "@_recent-created",
+      "path": "X/Assets/Dataview/@_recent-created.md"
     },
     {
       "basename": "06 Boas Práticas de Classificação",
       "path": "Atlas/Conceitos/+ Entendendo o básico Obsidian/06 Boas Práticas de Classificação.md"
+    },
+    {
+      "basename": "Considere apoiar o projeto 💛",
+      "path": "Considere apoiar o projeto 💛.md"
+    },
+    {
+      "basename": "Como baixar e instalar Copilot",
+      "path": "+/Como baixar e instalar Copilot.md"
+    },
+    {
+      "basename": "Obsidian Base",
+      "path": "+/Obsidian Base.base"
+    },
+    {
+      "basename": "@-templates",
+      "path": "X/Assets/Dataview/@-templates.md"
+    },
+    {
+      "basename": "09 ARC Framework",
+      "path": "Atlas/Conceitos/+ Entendendo o básico Obsidian/09 ARC Framework.md"
+    },
+    {
+      "basename": "As 3 Areas ACE",
+      "path": "+/As 3 Areas ACE.md"
     },
     {
       "basename": "_atalhos",
@@ -81,10 +101,6 @@
       "path": "Atlas/Index & Bases/10 dashboard++ (Template).md"
     },
     {
-      "basename": "Créditos-Atribuições",
-      "path": "Créditos-Atribuições.md"
-    },
-    {
       "basename": "_collection",
       "path": "X/Templates/Format/_collection.md"
     },
@@ -95,10 +111,6 @@
     {
       "basename": "T-new-note-collection",
       "path": "X/Templates/Format/T-new-note-collection.md"
-    },
-    {
-      "basename": "🏠",
-      "path": "🏠.md"
     },
     {
       "basename": "Boards",

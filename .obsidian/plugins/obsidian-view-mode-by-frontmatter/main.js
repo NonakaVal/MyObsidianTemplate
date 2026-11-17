@@ -65,6 +65,32 @@ class ViewModeByFrontmatterPlugin extends obsidian.Plugin {
                     return;
                 }
                 let state = leaf.getViewState();
+                // only touch the view state when it actually changes; every call to
+                // setViewState rebuilds the view, which undoes what other plugins did
+                // to the tab (e.g. its title or icon)
+                const setViewStateIfChanged = (mode, source) => __awaiter(this, void 0, void 0, function* () {
+                    if (state.state.mode === mode && state.state.source === source) {
+                        return;
+                    }
+                    state.state.mode = mode;
+                    state.state.source = source;
+                    yield leaf.setViewState(state);
+                });
+                // ... get frontmatter data and search for a key indicating the desired view mode
+                // and when the given key is present ... set it to the declared mode
+                const fileCache = this.app.metadataCache.getFileCache(view.file);
+                const fileDeclaredUIMode = fileCache !== null && fileCache.frontmatter
+                    ? fileCache.frontmatter[this.OBSIDIAN_UI_MODE_KEY]
+                    : null;
+                const fileDeclaredEditingMode = fileCache !== null && fileCache.frontmatter
+                    ? fileCache.frontmatter[this.OBSIDIAN_EDITING_MODE_KEY]
+                    : null;
+                const defaultEditingModeIsLivePreview = this.app.vault.config.livePreview === undefined ? true : this.app.vault.config.livePreview;
+                // editing mode to use when only the view mode is forced: the one declared
+                // in frontmatter, otherwise the Obsidian default
+                const editingModeIsSource = ["source", "live"].includes(fileDeclaredEditingMode)
+                    ? fileDeclaredEditingMode == "source"
+                    : !defaultEditingModeIsLivePreview;
                 // check if in a declared folder or file
                 let folderOrFileModeState = null;
                 const setFolderOrFileModeState = (viewMode) => {
@@ -90,7 +116,7 @@ class ViewModeByFrontmatterPlugin extends obsidian.Plugin {
                             break;
                         }
                         case this.OBSIDIAN_UI_MODE_KEY:
-                            folderOrFileModeState.source = false;
+                            folderOrFileModeState.source = editingModeIsSource;
                             break;
                     }
                 };
@@ -124,37 +150,22 @@ class ViewModeByFrontmatterPlugin extends obsidian.Plugin {
                     setFolderOrFileModeState(viewMode);
                 }
                 if (folderOrFileModeState) {
-                    if (state.state.mode !== folderOrFileModeState.mode ||
-                        state.state.source !== folderOrFileModeState.source) {
-                        state.state.mode = folderOrFileModeState.mode;
-                        state.state.source = folderOrFileModeState.source;
-                        yield leaf.setViewState(state);
-                    }
+                    yield setViewStateIfChanged(folderOrFileModeState.mode, folderOrFileModeState.source);
                     return;
                 }
-                // ... get frontmatter data and search for a key indicating the desired view mode
-                // and when the given key is present ... set it to the declared mode
-                const fileCache = this.app.metadataCache.getFileCache(view.file);
-                const fileDeclaredUIMode = fileCache !== null && fileCache.frontmatter
-                    ? fileCache.frontmatter[this.OBSIDIAN_UI_MODE_KEY]
-                    : null;
-                const fileDeclaredEditingMode = fileCache !== null && fileCache.frontmatter
-                    ? fileCache.frontmatter[this.OBSIDIAN_EDITING_MODE_KEY]
-                    : null;
-                if (fileDeclaredUIMode) {
-                    if (["source", "preview", "live"].includes(fileDeclaredUIMode) &&
-                        view.getMode() !== fileDeclaredUIMode) {
-                        state.state.mode = fileDeclaredUIMode;
-                    }
-                }
-                if (fileDeclaredEditingMode) {
-                    const shouldBeSourceMode = fileDeclaredEditingMode == 'source';
-                    if (["source", "live"].includes(fileDeclaredEditingMode)) {
-                        state.state.source = shouldBeSourceMode;
-                    }
-                }
                 if (fileDeclaredUIMode || fileDeclaredEditingMode) {
-                    yield leaf.setViewState(state);
+                    const fileDeclaredUIModeIsValid = ["source", "preview", "live"].includes(fileDeclaredUIMode);
+                    const mode = fileDeclaredUIModeIsValid
+                        ? fileDeclaredUIMode
+                        : state.state.mode;
+                    // when the view mode is forced, fall back to the Obsidian default
+                    // editing mode instead of whatever the leaf happened to be in
+                    const source = fileDeclaredUIModeIsValid
+                        ? editingModeIsSource
+                        : ["source", "live"].includes(fileDeclaredEditingMode)
+                            ? fileDeclaredEditingMode == "source"
+                            : state.state.source;
+                    yield setViewStateIfChanged(mode, source);
                     if (true == this.settings.ignoreOpenFiles) {
                         this.openedFiles = resetOpenedNotes(this.app);
                     }
@@ -163,14 +174,8 @@ class ViewModeByFrontmatterPlugin extends obsidian.Plugin {
                 const defaultViewMode = this.app.vault.config.defaultViewMode
                     ? this.app.vault.config.defaultViewMode
                     : "source";
-                const defaultEditingModeIsLivePreview = this.app.vault.config.livePreview === undefined ? true : this.app.vault.config.livePreview;
                 if (!this.settings.ignoreForceViewAll) {
-                    let state = leaf.getViewState();
-                    if (view.getMode() !== defaultViewMode) {
-                        state.state.mode = defaultViewMode;
-                    }
-                    state.state.source = defaultEditingModeIsLivePreview ? false : true;
-                    yield leaf.setViewState(state);
+                    yield setViewStateIfChanged(defaultViewMode, !defaultEditingModeIsLivePreview);
                     this.openedFiles = resetOpenedNotes(this.app);
                 }
                 return;
@@ -193,9 +198,7 @@ class ViewModeByFrontmatterPlugin extends obsidian.Plugin {
         });
     }
     onunload() {
-        return __awaiter(this, void 0, void 0, function* () {
-            this.openedFiles = [];
-        });
+        this.openedFiles = [];
     }
 }
 function alreadyOpen(currFile, openedFiles) {
@@ -222,21 +225,120 @@ function resetOpenedNotes(app) {
     });
     return openedFiles;
 }
+// the key is the stored value, the label what is shown in the dropdown
+const VIEW_MODES = {
+    "default": "default",
+    "obsidianUIMode: preview": "obsidianUIMode: preview (reading view)",
+    "obsidianUIMode: source": "obsidianUIMode: source (editing view)",
+    "obsidianEditingMode: live": "obsidianEditingMode: live (live preview)",
+    "obsidianEditingMode: source": "obsidianEditingMode: source (source mode)",
+};
+const IGNORE_OPEN_FILES = {
+    name: "Ignore opened files",
+    desc: "Never change the view mode on a note which was already open.",
+};
+const IGNORE_FORCE_VIEW_ALL = {
+    name: "Ignore force view when not in frontmatter",
+    desc: "Never change the view mode on a note that was opened from another one in a certain view mode",
+};
+const DEBOUNCE_TIMEOUT = {
+    name: "Debounce timeout in milliseconds",
+    desc: `Debounce timeout is the time in milliseconds after which the view mode is set. Set "0" to disable debouncing (default value is "300"). If you experience issues with the plugin, try increasing this value.`,
+};
+function keysDescription() {
+    return createFragment((desc) => {
+        desc.append("Changing the view mode can be done through the key ", desc.createEl("code", { text: "obsidianUIMode" }), ", which can have the value ", desc.createEl("code", { text: "source" }), " (editing view) or ", desc.createEl("code", { text: "preview" }), " (reading view).", desc.createEl("br"), "Changing the editing mode happens by declaring the key ", desc.createEl("code", { text: "obsidianEditingMode" }), "; it takes ", desc.createEl("code", { text: "live" }), " (live preview) or ", desc.createEl("code", { text: "source" }), " (source mode) as value.");
+    });
+}
+function foldersDescription() {
+    return createFragment((desc) => {
+        desc.append("Specify a view mode for notes in a given folder.", desc.createEl("br"), "Note that this will force the view mode on all the notes in the folder, even if they have a different view mode set in their frontmatter.", desc.createEl("br"), "Precedence is from bottom (highest) to top (lowest), so if you have child folders specified, make sure to put them below their parent folder.");
+    });
+}
+function filesDescription() {
+    return createFragment((desc) => {
+        desc.append("Specify a view mode for notes with specific patterns (regular expression; example \" - All$\" for all notes ending with \" - All\" or \"1900-01\" for all daily notes starting with \"1900-01\"", desc.createEl("br"), "Note that this will force the view mode, even if it have a different view mode set in its frontmatter.", desc.createEl("br"), "Precedence is from bottom (highest) to top (lowest).", desc.createEl("br"), "Notice that configuring a file pattern will override the folder configuration for the same file.");
+    });
+}
 class ViewModeByFrontmatterSettingTab extends obsidian.PluginSettingTab {
     constructor(app, plugin) {
         super(app, plugin);
         this.plugin = plugin;
     }
+    // Obsidian 1.13 and later build the tab from these definitions, which also
+    // puts the settings in the settings search; older versions call display()
+    getSettingDefinitions() {
+        const { folders, files } = this.plugin.settings;
+        return [
+            { name: "Front matter keys", desc: keysDescription() },
+            Object.assign(Object.assign({}, IGNORE_OPEN_FILES), { control: { type: "toggle", key: "ignoreOpenFiles" } }),
+            Object.assign(Object.assign({}, IGNORE_FORCE_VIEW_ALL), { control: { type: "toggle", key: "ignoreForceViewAll" } }),
+            Object.assign(Object.assign({}, DEBOUNCE_TIMEOUT), { control: {
+                    type: "number",
+                    key: "debounceTimeout",
+                    min: 0,
+                    defaultValue: DEFAULT_SETTINGS.debounceTimeout,
+                } }),
+            {
+                type: "list",
+                heading: "Folders",
+                items: folders.map((folderMode, index) => ({
+                    name: folderMode.folder,
+                    searchable: false,
+                    render: (setting) => {
+                        this.addFolderControls(setting, index);
+                        setting.infoEl.remove();
+                        setting.settingEl.addClass("force-view-mode-rule");
+                    },
+                })),
+                addItem: {
+                    name: "Add folder",
+                    action: () => void this.addRule(folders, { folder: "", viewMode: "" }),
+                },
+                onDelete: (index) => void this.deleteRule(folders, index),
+                onReorder: (from, to) => void this.moveRule(folders, from, to),
+            },
+            // a list header holds only its heading and add button, so the
+            // explanation goes below the rules
+            {
+                type: "group",
+                items: [{ name: "Folder rules", desc: foldersDescription() }],
+            },
+            {
+                type: "list",
+                heading: "Files",
+                items: files.map((file, index) => ({
+                    name: file.filePattern,
+                    searchable: false,
+                    render: (setting) => {
+                        this.addFileControls(setting, index);
+                        setting.infoEl.remove();
+                        setting.settingEl.addClass("force-view-mode-rule");
+                    },
+                })),
+                addItem: {
+                    name: "Add file",
+                    action: () => void this.addRule(files, { filePattern: "", viewMode: "" }),
+                },
+                onDelete: (index) => void this.deleteRule(files, index),
+                onReorder: (from, to) => void this.moveRule(files, from, to),
+            },
+            // a list header holds only its heading and add button, so the
+            // explanation goes below the rules
+            {
+                type: "group",
+                items: [{ name: "File rules", desc: filesDescription() }],
+            },
+        ];
+    }
     display() {
-        let { containerEl } = this;
+        const { containerEl } = this;
+        const { folders, files } = this.plugin.settings;
         containerEl.empty();
-        const createHeader = (text) => containerEl.createEl("h2", { text });
-        const desc = document.createDocumentFragment();
-        desc.append("Changing the view mode can be done through the key ", desc.createEl("code", { text: "obsidianUIMode" }), ", which can have the value ", desc.createEl("code", { text: "source" }), " or ", desc.createEl("code", { text: "preview" }), ".", desc.createEl("br"), "Changing the editing mode happens by declaring the key ", desc.createEl("code", { text: "obsidianEditingMode" }), "; it takes ", desc.createEl("code", { text: "live" }), " or ", desc.createEl("code", { text: "source" }), " as value.");
-        new obsidian.Setting(this.containerEl).setDesc(desc);
+        new obsidian.Setting(containerEl).setDesc(keysDescription());
         new obsidian.Setting(containerEl)
-            .setName("Ignore opened files")
-            .setDesc("Never change the view mode on a note which was already open.")
+            .setName(IGNORE_OPEN_FILES.name)
+            .setDesc(IGNORE_OPEN_FILES.desc)
             .addToggle((checkbox) => checkbox
             .setValue(this.plugin.settings.ignoreOpenFiles)
             .onChange((value) => __awaiter(this, void 0, void 0, function* () {
@@ -244,8 +346,8 @@ class ViewModeByFrontmatterSettingTab extends obsidian.PluginSettingTab {
             yield this.plugin.saveSettings();
         })));
         new obsidian.Setting(containerEl)
-            .setName("Ignore force view when not in frontmatter")
-            .setDesc("Never change the view mode on a note that was opened from another one in a certain view mode")
+            .setName(IGNORE_FORCE_VIEW_ALL.name)
+            .setDesc(IGNORE_FORCE_VIEW_ALL.desc)
             .addToggle((checkbox) => {
             checkbox
                 .setValue(this.plugin.settings.ignoreForceViewAll)
@@ -255,140 +357,133 @@ class ViewModeByFrontmatterSettingTab extends obsidian.PluginSettingTab {
             }));
         });
         new obsidian.Setting(containerEl)
-            .setName("Debounce timeout in milliseconds")
-            .setDesc(`Debounce timeout is the time in milliseconds after which the view mode is set. Set "0" to disable debouncing (default value is "300"). If you experience issues with the plugin, try increasing this value.`)
+            .setName(DEBOUNCE_TIMEOUT.name)
+            .setDesc(DEBOUNCE_TIMEOUT.desc)
             .addText((cb) => {
             cb.setValue(String(this.plugin.settings.debounceTimeout)).onChange((value) => __awaiter(this, void 0, void 0, function* () {
                 this.plugin.settings.debounceTimeout = Number(value);
                 yield this.plugin.saveSettings();
             }));
         });
-        const modes = [
-            "default",
-            "obsidianUIMode: preview",
-            "obsidianUIMode: source",
-            "obsidianEditingMode: live",
-            "obsidianEditingMode: source",
-        ];
-        createHeader("Folders");
-        const folderDesc = document.createDocumentFragment();
-        folderDesc.append("Specify a view mode for notes in a given folder.", folderDesc.createEl("br"), "Note that this will force the view mode on all the notes in the folder, even if they have a different view mode set in their frontmatter.", folderDesc.createEl("br"), "Precedence is from bottom (highest) to top (lowest), so if you have child folders specified, make sure to put them below their parent folder.");
-        new obsidian.Setting(this.containerEl).setDesc(folderDesc);
-        new obsidian.Setting(this.containerEl)
+        new obsidian.Setting(containerEl).setName("Folders").setHeading();
+        new obsidian.Setting(containerEl).setDesc(foldersDescription());
+        new obsidian.Setting(containerEl)
             .setDesc("Add new folder")
             .addButton((button) => {
             button
                 .setTooltip("Add another folder to the list")
                 .setButtonText("+")
                 .setCta()
-                .onClick(() => __awaiter(this, void 0, void 0, function* () {
-                this.plugin.settings.folders.push({
-                    folder: "",
-                    viewMode: "",
-                });
-                yield this.plugin.saveSettings();
-                this.display();
-            }));
+                .onClick(() => this.addRule(folders, { folder: "", viewMode: "" }));
         });
-        this.plugin.settings.folders.forEach((folderMode, index) => {
-            const div = containerEl.createEl("div");
-            div.addClass("force-view-mode-div");
-            div.addClass("force-view-mode-folder");
-            const s = new obsidian.Setting(this.containerEl)
-                .addSearch((cb) => {
-                cb.setPlaceholder("Example: folder1/templates")
-                    .setValue(folderMode.folder)
-                    .onChange((newFolder) => __awaiter(this, void 0, void 0, function* () {
-                    if (newFolder &&
-                        this.plugin.settings.folders.some((e) => e.folder == newFolder)) {
-                        console.error("ForceViewMode: This folder already has a template associated with", newFolder);
-                        return;
-                    }
-                    this.plugin.settings.folders[index].folder = newFolder;
-                    yield this.plugin.saveSettings();
-                }));
-            })
-                .addDropdown(cb => {
-                modes.forEach(mode => {
-                    cb.addOption(mode, mode);
-                });
-                cb.setValue(folderMode.viewMode || "default")
-                    .onChange((value) => __awaiter(this, void 0, void 0, function* () {
-                    this.plugin.settings.folders[index].viewMode = value;
-                    yield this.plugin.saveSettings();
-                }));
-            })
-                .addExtraButton((cb) => {
+        folders.forEach((_, index) => {
+            const s = new obsidian.Setting(containerEl.createDiv({ cls: ["force-view-mode-div", "force-view-mode-folder"] }));
+            this.addFolderControls(s, index);
+            s.addExtraButton((cb) => {
                 cb.setIcon("cross")
                     .setTooltip("Delete")
-                    .onClick(() => __awaiter(this, void 0, void 0, function* () {
-                    this.plugin.settings.folders.splice(index, 1);
-                    yield this.plugin.saveSettings();
-                    this.display();
-                }));
+                    .onClick(() => this.deleteRule(folders, index));
             });
             s.infoEl.remove();
-            div.appendChild(containerEl.lastChild);
         });
-        createHeader("Files");
-        const filesDesc = document.createDocumentFragment();
-        filesDesc.append("Specify a view mode for notes with specific patterns (regular expression; example \" - All$\" for all notes ending with \" - All\" or \"1900-01\" for all daily notes starting with \"1900-01\"", filesDesc.createEl("br"), "Note that this will force the view mode, even if it have a different view mode set in its frontmatter.", filesDesc.createEl("br"), "Precedence is from bottom (highest) to top (lowest).", filesDesc.createEl("br"), "Notice that configuring a file pattern will override the folder configuration for the same file.");
-        new obsidian.Setting(this.containerEl).setDesc(filesDesc);
-        new obsidian.Setting(this.containerEl)
+        new obsidian.Setting(containerEl).setName("Files").setHeading();
+        new obsidian.Setting(containerEl).setDesc(filesDescription());
+        new obsidian.Setting(containerEl)
             .setDesc("Add new file")
             .addButton((button) => {
             button
                 .setTooltip("Add another file to the list")
                 .setButtonText("+")
                 .setCta()
-                .onClick(() => __awaiter(this, void 0, void 0, function* () {
-                this.plugin.settings.files.push({
-                    filePattern: "",
-                    viewMode: "",
-                });
-                yield this.plugin.saveSettings();
-                this.display();
-            }));
+                .onClick(() => this.addRule(files, { filePattern: "", viewMode: "" }));
         });
-        this.plugin.settings.files.forEach((file, index) => {
-            const div = containerEl.createEl("div");
-            div.addClass("force-view-mode-div");
-            div.addClass("force-view-mode-folder");
-            const s = new obsidian.Setting(this.containerEl)
-                .addSearch((cb) => {
-                cb.setPlaceholder(`Example: " - All$" or "1900-01")`)
-                    .setValue(file.filePattern)
-                    .onChange((value) => __awaiter(this, void 0, void 0, function* () {
-                    if (value &&
-                        this.plugin.settings.files.some((e) => e.filePattern == value)) {
-                        console.error("ForceViewMode: Pattern already exists", value);
-                        return;
-                    }
-                    this.plugin.settings.files[index].filePattern = value;
-                    yield this.plugin.saveSettings();
-                }));
-            })
-                .addDropdown((cb) => {
-                modes.forEach((mode) => {
-                    cb.addOption(mode, mode);
-                });
-                cb.setValue(file.viewMode || "default").onChange((value) => __awaiter(this, void 0, void 0, function* () {
-                    this.plugin.settings.files[index].viewMode = value;
-                    yield this.plugin.saveSettings();
-                }));
-            })
-                .addExtraButton((cb) => {
+        files.forEach((_, index) => {
+            const s = new obsidian.Setting(containerEl.createDiv({ cls: ["force-view-mode-div", "force-view-mode-folder"] }));
+            this.addFileControls(s, index);
+            s.addExtraButton((cb) => {
                 cb.setIcon("cross")
                     .setTooltip("Delete")
-                    .onClick(() => __awaiter(this, void 0, void 0, function* () {
-                    this.plugin.settings.files.splice(index, 1);
-                    yield this.plugin.saveSettings();
-                    this.display();
-                }));
+                    .onClick(() => this.deleteRule(files, index));
             });
             s.infoEl.remove();
-            div.appendChild(containerEl.lastChild);
         });
+    }
+    addFolderControls(setting, index) {
+        const { folders } = this.plugin.settings;
+        setting
+            .addSearch((cb) => {
+            cb.setPlaceholder("Example: folder1/templates")
+                .setValue(folders[index].folder)
+                .onChange((newFolder) => __awaiter(this, void 0, void 0, function* () {
+                if (newFolder && folders.some((e) => e.folder == newFolder)) {
+                    console.error("ForceViewMode: This folder already has a template associated with", newFolder);
+                    return;
+                }
+                folders[index].folder = newFolder;
+                yield this.plugin.saveSettings();
+            }));
+        })
+            .addDropdown((cb) => {
+            cb.addOptions(VIEW_MODES);
+            cb.setValue(folders[index].viewMode || "default").onChange((value) => __awaiter(this, void 0, void 0, function* () {
+                folders[index].viewMode = value;
+                yield this.plugin.saveSettings();
+            }));
+        });
+    }
+    addFileControls(setting, index) {
+        const { files } = this.plugin.settings;
+        setting
+            .addSearch((cb) => {
+            cb.setPlaceholder(`Example: " - All$" or "1900-01")`)
+                .setValue(files[index].filePattern)
+                .onChange((value) => __awaiter(this, void 0, void 0, function* () {
+                if (value && files.some((e) => e.filePattern == value)) {
+                    console.error("ForceViewMode: Pattern already exists", value);
+                    return;
+                }
+                files[index].filePattern = value;
+                yield this.plugin.saveSettings();
+            }));
+        })
+            .addDropdown((cb) => {
+            cb.addOptions(VIEW_MODES);
+            cb.setValue(files[index].viewMode || "default").onChange((value) => __awaiter(this, void 0, void 0, function* () {
+                files[index].viewMode = value;
+                yield this.plugin.saveSettings();
+            }));
+        });
+    }
+    addRule(rules, rule) {
+        return __awaiter(this, void 0, void 0, function* () {
+            rules.push(rule);
+            yield this.plugin.saveSettings();
+            this.refresh();
+        });
+    }
+    deleteRule(rules, index) {
+        return __awaiter(this, void 0, void 0, function* () {
+            rules.splice(index, 1);
+            yield this.plugin.saveSettings();
+            this.refresh();
+        });
+    }
+    moveRule(rules, from, to) {
+        return __awaiter(this, void 0, void 0, function* () {
+            rules.splice(to, 0, ...rules.splice(from, 1));
+            yield this.plugin.saveSettings();
+            this.refresh();
+        });
+    }
+    // re-render after rules were added, removed or moved; Obsidian 1.13 and
+    // later no longer call display() once getSettingDefinitions() is implemented
+    refresh() {
+        if (obsidian.requireApiVersion("1.13.0")) {
+            this.update();
+        }
+        else {
+            this.display();
+        }
     }
 }
 
