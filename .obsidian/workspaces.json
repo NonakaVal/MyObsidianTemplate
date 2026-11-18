@@ -96,7 +96,8 @@
           }
         ],
         "direction": "horizontal",
-        "width": 344.5
+        "width": 344.5,
+        "collapsed": true
       },
       "right": {
         "id": "3703f7d8eaeb01fd",
@@ -240,12 +241,11 @@
           "workspaces:Gerenciar leiautes da área de trabalho": false,
           "bases:Criar nova base": false,
           "callout-manager:Insert Callout": false,
-          "templater-obsidian:Templater": false,
-          "periodic-notes:Open today": false
+          "templater-obsidian:Templater": false
         }
       },
-      "active": "b34c0f902b1265c0",
-      "mtime": "2026-08-23T15:38:31-03:00"
+      "active": "2f4da4148c8faf6f",
+      "mtime": "2026-11-17T19:20:48-03:00"
     },
     "00 - Primeira Nota": {
       "main": {

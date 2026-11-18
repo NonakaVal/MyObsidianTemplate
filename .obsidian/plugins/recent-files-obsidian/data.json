@@ -5,16 +5,12 @@
       "path": "Boas Vindas.md"
     },
     {
-      "basename": "08 ACE Pack",
-      "path": "Atlas/Conceitos/+ Entendendo o básico Obsidian/08 ACE Pack.md"
+      "basename": "Considere apoiar o projeto 💛",
+      "path": "Considere apoiar o projeto 💛.md"
     },
     {
-      "basename": "07 Sugestões de Classificações",
-      "path": "Atlas/Conceitos/+ Entendendo o básico Obsidian/07 Sugestões de Classificações.md"
-    },
-    {
-      "basename": "Gestão de Conhecimento",
-      "path": "X/Collections/Gestão de Conhecimento.md"
+      "basename": "Créditos-Atribuições",
+      "path": "Créditos-Atribuições.md"
     },
     {
       "basename": "03 Propriedades",
@@ -29,16 +25,24 @@
       "path": "Atlas/Conceitos/+ Entendendo o básico Obsidian/01 Primeira Nota.md"
     },
     {
+      "basename": "08 ACE Pack",
+      "path": "Atlas/Conceitos/+ Entendendo o básico Obsidian/08 ACE Pack.md"
+    },
+    {
+      "basename": "07 Sugestões de Classificações",
+      "path": "Atlas/Conceitos/+ Entendendo o básico Obsidian/07 Sugestões de Classificações.md"
+    },
+    {
+      "basename": "Gestão de Conhecimento",
+      "path": "X/Collections/Gestão de Conhecimento.md"
+    },
+    {
       "basename": "README",
       "path": "README.md"
     },
     {
       "basename": "🏠",
       "path": "🏠.md"
-    },
-    {
-      "basename": "Créditos-Atribuições",
-      "path": "Créditos-Atribuições.md"
     },
     {
       "basename": "+ Gestão de Conhecimento",
@@ -55,10 +59,6 @@
     {
       "basename": "06 Boas Práticas de Classificação",
       "path": "Atlas/Conceitos/+ Entendendo o básico Obsidian/06 Boas Práticas de Classificação.md"
-    },
-    {
-      "basename": "Considere apoiar o projeto 💛",
-      "path": "Considere apoiar o projeto 💛.md"
     },
     {
       "basename": "Como baixar e instalar Copilot",

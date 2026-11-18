@@ -1,7 +1,13 @@
 # ❤️ Apoie o Projeto
 
+> [!Video]+ [[Créditos-Atribuições]]
+> <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://drive.google.com/file/d/1Z-wGZfPFkO6V5_lSzDTvgWynSovTvjPA/preview" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
 
+<br>
+---
 
+> [!Video]- Agradecimentos Finais e Contexto 
+> <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://drive.google.com/file/d/1XSLA1dF2lieBd01yoJDfmO2rhWPTjlk7/preview" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
 
 ![[QRcodesApoio]]
 
